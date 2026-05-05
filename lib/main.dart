@@ -133,21 +133,28 @@ class _NeubauerCounterPageState
       });
     }
   }
-
+//Esta es la función para restar, si te fijas tiene un --
   // ======================================================
-  // Siguiente cuadrante
+  // La siguiente función dirá cuando se debe cambiar al siguiente cuadrante. 
+  // La lógica es, guardar el conteo del cuadrante actual. 
+  // Pasar al siguiente cuadrante 
+  // Reiniciar contador. 
+  // Si ya se terminaron los 4, se calculan los resultados. 
   void siguienteCuadrante() {
     setState(() {
 
       conteos[cuadranteActual] = contador;
+      // Aquí se guardan cuantas células se contaron en este cuadrante. 
 
       if (cuadranteActual < 3) {
         cuadranteActual++;
         contador = 0;
+        // Esto es para pasar al siguiente cuadrante y reiniciar el contador de células. 
       } else {
         calcularResultados();
         paso = 2;
       }
+      // Este else es para ver si ya terminaste con todos los cuadrantes. 
     });
   }
 
@@ -157,9 +164,12 @@ class _NeubauerCounterPageState
 
     int total =
         conteos.reduce((a, b) => a + b);
+       // Esto es para sumar todos los valores de la lista.
+       //Reduce es una función que agarra todos los valores y los combina.
+       //El a + b es como de sumarlos todos.
 
     promedio = total / 4;
-
+// aquí si te fijas es como lo de para calcular el promedio.
     celulasPorMl =
         promedio * factorDilucion * 10000;
   }
@@ -183,9 +193,11 @@ class _NeubauerCounterPageState
       ),
     );
   }
-
+// Esta es la parte visual de mi app.
   // ======================================================
   // Pantalla 1
+
+// Esta es la primera pantalla visual de la aplicación.
   Widget pantallaDilucion() {
     return SingleChildScrollView(
       child: Column(
@@ -239,6 +251,7 @@ class _NeubauerCounterPageState
 
   // ======================================================
   // Pantalla 2
+  // Esta es la segunda  pantalla visual de la aplicación 
   Widget pantallaConteo() {
     return Column(
       children: [
@@ -279,6 +292,7 @@ class _NeubauerCounterPageState
 
   // ======================================================
   // Pantalla 3
+  // Esta es la tercera pantalla visual de la aplicación.
   Widget pantallaResultados() {
 
     int total =
